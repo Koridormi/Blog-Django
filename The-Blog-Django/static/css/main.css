@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    /* Tipografia */
+    --fuente-principal: "Roboto", Arial, Helvetica, sans-serif;
+
+    /* Paleta de colores */
+    --primario: #2563eb;
+    --secundario: #64748b;
+    --fondo: #f8fafc;
+    --superficie: #ffffff;
+    --tipografia: #0f172a;
+    --tipografia-secundaria: #475569;
+    --borde: #e2e8f0;
+    --focus: #f59e0b;
+    --exito: #16a34a;
+    --error: #dc2626;
+}
+/* Base rem y modelo de caja */
+html {
+    font-size: 62.5%; /* 1rem = 10px si la base del navegador es 16px */
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+/* Reset basico */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Globales */
+body {
+    font-size: 1.6rem;
+    font-family: var(--fuente-principal);
+    line-height: 1.6;
+    color: var(--tipografia);
+    background-color: var(--fondo);
+
+    /* Footer al final de la pagina */
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+
+    background-color: #2c2c2c;
+    color: whitesmoke;
+}
+
+/* Tipografia de formularios */
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* Bloqueo de scroll para overlays */
+body.no-scroll {
+    overflow: hidden;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* Header */
