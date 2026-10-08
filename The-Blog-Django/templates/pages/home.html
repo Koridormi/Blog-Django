@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends '../base.html' %}
 
 {% block title %}Inicio | Mi Blog Personal{% endblock %}
 
@@ -9,5 +9,7 @@
     <section>
         <h2>Últimas Publicaciones</h2>
         <p>Aquí encontrarás mis artículos más recientes.</p>
+
+        <a href="{% url 'posts:post_list' %}">Publicaciones</a>
     </section>
 {% endblock %}

@@ -47,9 +47,6 @@ body {
     min-height: 100svh;
     display: flex;
     flex-direction: column;
-
-    background-color: #2c2c2c;
-    color: whitesmoke;
 }
 
 /* Tipografia de formularios */
@@ -74,3 +71,31 @@ footer {
 }
 
 /* Header */
+.header-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem 0;
+
+    & a {
+        text-decoration: none;
+    }
+
+    & ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+    }
+}
+
+.site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.site-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

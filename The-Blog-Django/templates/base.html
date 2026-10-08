@@ -5,29 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Mi Blog Personal{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static './css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static './css/main.css' %}">
 </head>
 <body>
-    <header class='site-header'>
-        <nav>
+    <header class="site-header">
+        <nav class="header-nav">
             <a href="{% url 'pages:home' %}">
-                <img src="{% static '#' %}" alt="Logo del Blog">
+                <img src="#" alt="Logo del Blog">
             </a>
             <ul>
                 <li><a href="{% url 'pages:home' %}">Inicio</a></li>
-                {% comment %} <li><a href="{% url 'acerca_de' %}">Acerca de</a></li> {% endcomment %}
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="{% url 'posts:post_list' %}">Publicaciones</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class='site-main'>
+    <main class="site-main">
         {% block content %}
             
         {% endblock %}
     </main>
 
-    <footer class='site-footer'>
+    <footer class="site-footer">
         <p>Blog creado con Django.</p>
     </footer>
 </body>
