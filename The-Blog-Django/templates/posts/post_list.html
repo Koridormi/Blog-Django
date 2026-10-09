@@ -4,7 +4,16 @@
 
 {% block content %}
     <h1>Publicaciones</h1>
-    <p>Estas son mis publicaciones</p>
 
-    <a href="{% url 'pages:home' %}">Volver al inicio</a>
+    <div class="main-contenido">
+    {% for post in posts %}
+        <article>
+            <h2><a href="{% url 'posts:post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.description }}</p>
+            <p>Author: {{ post.author.username }}</p>
+        </article>
+    {% empty %}
+        <p>No hay publicaciones disponibles.</p>
+    {% endfor %}
+    </div>
 {% endblock %}

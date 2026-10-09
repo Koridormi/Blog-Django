@@ -1,0 +1,9 @@
+{% extends './base.html' %}
+
+{% block title %}500 Internal Server Error | Mi Blog Personal{% endblock %}
+
+{% block content %}
+    <h1>500 Internal Server Error</h1>
+    <p>No hay resultados disponibles</p>
+    <a href="{% url 'posts:post_list' %}">Volver a Publicaciones</a>
+{% endblock %}

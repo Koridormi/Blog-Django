@@ -1,0 +1,9 @@
+{% extends './base.html' %}
+
+{% block title %}404 Not Found | Mi Blog Personal{% endblock %}
+
+{% block content %}
+    <h1>404 Not Found</h1>
+    <p>No hay resultados disponibles</p>
+    <a href="{% url 'posts:post_list' %}">Volver a Publicaciones</a>
+{% endblock %}

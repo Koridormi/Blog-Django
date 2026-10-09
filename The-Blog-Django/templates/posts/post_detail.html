@@ -1,0 +1,13 @@
+{% extends '../base.html' %}
+
+{% block title %}{{ post.title }} | Mi Blog Personal{% endblock %}
+
+{% block content %}
+    <article>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.description }}</p>
+        <p>Author: {{ post.author.username }}</p>
+    </article>
+
+    <a href="{% url 'posts:post_list' %}">Volver a Publicaciones</a>
+{% endblock %}

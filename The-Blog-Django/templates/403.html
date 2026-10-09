@@ -1,0 +1,9 @@
+{% extends './base.html' %}
+
+{% block title %}403 Forbidden | Mi Blog Personal{% endblock %}
+
+{% block content %}
+    <h1>403 Forbidden</h1>
+    <p>No hay resultados disponibles</p>
+    <a href="{% url 'posts:post_list' %}">Volver a Publicaciones</a>
+{% endblock %}
