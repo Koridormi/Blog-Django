@@ -18,6 +18,18 @@
                 <li><a href="{% url 'pages:home' %}">Inicio</a></li>
                 <li><a href="#">Acerca de</a></li>
                 <li><a href="{% url 'posts:post_list' %}">Publicaciones</a></li>
+                
+                {% if user.is_authenticated %}
+                    <li><p>{{ user.username }}</p></li>
+                    <li>
+                        <form method="post" action="{% url 'accounts:logout' %}">
+                            {% csrf_token %}
+                            <button type="submit">Cerrar Sesión</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'accounts:login' %}">Iniciar Sesión</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
