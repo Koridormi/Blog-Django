@@ -16,4 +16,9 @@
         <p>No hay publicaciones disponibles.</p>
     {% endfor %}
     </div>
+    {% if user.is_authenticated %}
+    <div>
+        <a href="{% url 'posts:post_create' %}">Crear Publicación</a>
+    </div>
+    {% endif %}
 {% endblock %}
