@@ -1,9 +1,14 @@
 {% extends './base.html' %}
 
-{% block title %}404 Not Found | Mi Blog Personal{% endblock %}
+{% block title %}404 · Esta página no está aquí. | Mi Blog Personal{% endblock %}
+{% block description %}Puede que el enlace haya cambiado o que la página ya no exista. Encontrarás más historias en las publicaciones.{% endblock %}
+{% block robots %}noindex, follow{% endblock %}
 
 {% block content %}
-    <h1>404 Not Found</h1>
-    <p>No hay resultados disponibles</p>
-    <a href="{% url 'posts:post_list' %}">Volver a Publicaciones</a>
+    <section class="error-page" aria-labelledby="error-title">
+        <p class="error-code" aria-label="Error 404">404</p>
+        <h1 id="error-title">Esta página no está aquí.</h1>
+        <p class="lead">Puede que el enlace haya cambiado o que la página ya no exista. Encontrarás más historias en las publicaciones.</p>
+        <div class="actions"><a class="button" href="{% url 'pages:home' %}">Volver al inicio</a><a class="text-link" href="{% url 'posts:post_list' %}">Ver publicaciones</a></div>
+    </section>
 {% endblock %}

@@ -1,21 +1,20 @@
 {% extends '../base.html' %}
 
-{% block title %}Login | Mi Blog Personal {% endblock %}
+{% block title %}Iniciar sesión | Mi Blog Personal{% endblock %}
+{% block description %}Inicia sesión en Mi Blog para escribir y administrar tus publicaciones.{% endblock %}
+{% block robots %}noindex, follow{% endblock %}
 
 {% block content %}
-    <h1>Iniciar Sesión</h1>
-
-    <form method="post" action="{% url 'accounts:login' %}" novalidate>
-        {% csrf_token %}
-        {{ form.as_p }}
-
-        <input type="hidden" name="next" value="{{ next }}">
-
-        <button type="submit">Iniciar Sesión</button>
-    </form>
-
-    <div>
-        <a href="{% url 'pages:home' %}">Volver al Inicio</a>
-        <a href="{% url 'accounts:sign_up' %}">Crear Cuenta</a>
-    </div>
+    <section class="auth-page" aria-labelledby="login-title">
+        <header class="page-heading"><h1 id="login-title">Qué bueno verte de nuevo.</h1><p>Inicia sesión para seguir compartiendo tus ideas.</p></header>
+        <form class="site-form" method="post" action="{% url 'accounts:login' %}">
+            {% csrf_token %}
+            {% if form.errors %}<p class="form-alert" role="alert">No pudimos iniciar sesión. Revisa los mensajes del formulario.</p>{% endif %}
+            <div class="form-fields">{{ form.as_div }}</div>
+            <input type="hidden" name="next" value="{{ next }}">
+            <button class="button button-full" type="submit">Iniciar sesión</button>
+        </form>
+        <p class="auth-switch">¿Todavía no tienes una cuenta? <a href="{% url 'accounts:sign_up' %}">Crear cuenta</a></p>
+        <a class="text-link" href="{% url 'pages:home' %}">Volver al inicio</a>
+    </section>
 {% endblock %}

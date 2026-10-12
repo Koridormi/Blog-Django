@@ -1,16 +1,19 @@
 {% extends '../base.html' %}
 
-{% block title %}Registro | Mi Blog Personal{% endblock %}
+{% block title %}Crear cuenta | Mi Blog Personal{% endblock %}
+{% block description %}Crea tu cuenta en Mi Blog para empezar a compartir pensamientos y experiencias.{% endblock %}
+{% block robots %}noindex, follow{% endblock %}
 
 {% block content %}
-    <h1>Crear Cuenta</h1>
-
-    <form method="post" action="{% url 'accounts:sign_up' %}" novalidate>
-        {% csrf_token %}
-        {{ form.as_p }}
-
-        <button type="submit">Crear Cuenta</button>
-    </form>
-
-    <a href="{% url 'accounts:login' %}">¿Ya tienes una cuenta? Inicia sesión</a>
+    <section class="auth-page" aria-labelledby="signup-title">
+        <header class="page-heading"><h1 id="signup-title">Tus ideas tienen un lugar.</h1><p>Crea una cuenta y empieza a escribir tu próxima historia.</p></header>
+        <form class="site-form" method="post" action="{% url 'accounts:sign_up' %}">
+            {% csrf_token %}
+            {% if form.errors %}<p class="form-alert" role="alert">No se pudo crear la cuenta. Revisa los campos indicados.</p>{% endif %}
+            <div class="form-fields">{{ form.as_div }}</div>
+            <p class="form-note">Todos los campos son obligatorios.</p>
+            <button class="button button-full" type="submit">Crear cuenta</button>
+        </form>
+        <p class="auth-switch">¿Ya tienes una cuenta? <a href="{% url 'accounts:login' %}">Iniciar sesión</a></p>
+    </section>
 {% endblock %}

@@ -1,9 +1,14 @@
 {% extends './base.html' %}
 
-{% block title %}403 Forbidden | Mi Blog Personal{% endblock %}
+{% block title %}403 · Acceso restringido | Mi Blog Personal{% endblock %}
+{% block description %}No tienes permiso para acceder a esta página. Puedes volver a las publicaciones o iniciar sesión con otra cuenta.{% endblock %}
+{% block robots %}noindex, follow{% endblock %}
 
 {% block content %}
-    <h1>403 Forbidden</h1>
-    <p>No hay resultados disponibles</p>
-    <a href="{% url 'posts:post_list' %}">Volver a Publicaciones</a>
+    <section class="error-page" aria-labelledby="error-title">
+        <p class="error-code" aria-label="Error 403">403</p>
+        <h1 id="error-title">Acceso restringido</h1>
+        <p class="lead">No tienes permiso para acceder a esta página. Puedes volver a las publicaciones o iniciar sesión con otra cuenta.</p>
+        <div class="actions"><a class="button" href="{% url 'pages:home' %}">Volver al inicio</a><a class="text-link" href="{% url 'posts:post_list' %}">Ver publicaciones</a></div>
+    </section>
 {% endblock %}

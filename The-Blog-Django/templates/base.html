@@ -5,44 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Mi Blog Personal{% endblock %}</title>
-    <link rel="stylesheet" href="{% static './css/normalize.css' %}">
-    <link rel="stylesheet" href="{% static './css/main.css' %}">
+    <meta name="description" content="{% block description %}Pensamientos, experiencias y artículos de Koridormi. Un blog personal para compartir ideas y aprender con Django.{% endblock %}">
+    <meta name="author" content="Koridormi">
+    <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
+    <meta name="theme-color" content="#2563eb">
+    {% if request %}<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">{% endif %}
+    {% block social_meta %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/icon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
     <header class="site-header">
-        <nav class="header-nav">
-            <a href="{% url 'pages:home' %}">
-                <img src="#" alt="Logo del Blog">
+        <nav class="header-nav container" aria-label="Navegación principal">
+            <a class="brand" href="{% url 'pages:home' %}" aria-label="Mi Blog — Inicio">
+                <img src="{% static 'assets/logo/logo.png' %}" alt="Mi Blog" width="2048" height="768">
             </a>
-            <ul>
-                <li><a href="{% url 'pages:home' %}">Inicio</a></li>
-                <li><a href="{% url 'pages:about' %}">Acerca de</a></li>
-                <li><a href="{% url 'posts:post_list' %}">Publicaciones</a></li>
-                
-                {% if user.is_authenticated %}
-                    <li><p>{{ user.username }}</p></li>
-                    <li>
-                        <form method="post" action="{% url 'accounts:logout' %}">
-                            {% csrf_token %}
-                            <button type="submit">Cerrar Sesión</button>
-                        </form>
-                    </li>
-                {% else %}
-                    <li><a href="{% url 'accounts:login' %}">Iniciar Sesión</a></li>
-                    <li><a href="{% url 'accounts:sign_up' %}">Crear Cuenta</a></li>
-                {% endif %}
+            <ul class="nav-links">
+                <li><a href="{% url 'pages:home' %}" {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}>Inicio</a></li>
+                <li><a href="{% url 'pages:about' %}" {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>Acerca de</a></li>
+                <li><a href="{% url 'posts:post_list' %}" {% if request.resolver_match.namespace == 'posts' %}aria-current="{% if request.resolver_match.url_name == 'post_list' %}page{% else %}true{% endif %}"{% endif %}>Publicaciones</a></li>
             </ul>
+            <div class="account-nav">
+                {% if user.is_authenticated %}
+                    <span class="account-name" title="{{ user.username }}">{{ user.username }}</span>
+                    <form method="post" action="{% url 'accounts:logout' %}">
+                        {% csrf_token %}
+                        <button class="button button-secondary button-small" type="submit">Cerrar sesión</button>
+                    </form>
+                {% else %}
+                    <a class="account-login" href="{% url 'accounts:login' %}" {% if request.resolver_match.url_name == 'login' %}aria-current="page"{% endif %}>Iniciar sesión</a>
+                    <a class="button button-small" href="{% url 'accounts:sign_up' %}" {% if request.resolver_match.url_name == 'sign_up' %}aria-current="page"{% endif %}>Crear cuenta</a>
+                {% endif %}
+            </div>
         </nav>
     </header>
 
-    <main class="site-main">
-        {% block content %}
-            
-        {% endblock %}
+    <main class="site-main container" id="main-content" tabindex="-1">
+        {% if messages %}
+            <div class="messages" role="status">{% for message in messages %}<p>{{ message }}</p>{% endfor %}</div>
+        {% endif %}
+        {% block content %}{% endblock %}
     </main>
 
     <footer class="site-footer">
-        <p>Blog creado con Django.</p>
+        <div class="footer-content container">
+            <div><a class="footer-brand" href="{% url 'pages:home' %}">Mi Blog<span>.</span></a><p>Pensamientos y experiencias, en un mismo lugar.</p></div>
+            <nav aria-label="Navegación del pie de página"><a href="{% url 'pages:about' %}">Acerca de</a><a href="{% url 'posts:post_list' %}">Publicaciones</a></nav>
+            <p class="footer-credit">© {% now 'Y' %} Koridormi · Creado con Django</p>
+        </div>
     </footer>
 </body>
 </html>

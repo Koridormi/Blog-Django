@@ -1,15 +1,16 @@
 {% extends '../base.html' %}
 
 {% block title %}Inicio | Mi Blog Personal{% endblock %}
+{% block description %}Bienvenido al blog personal de Koridormi. Explora pensamientos, experiencias y artículos compartidos en un espacio sencillo para leer y aprender.{% endblock %}
 
 {% block content %}
-    <h1>Bienvenidos a mi blog personal</h1>
-    <p>Compartir mis pensamientos y experiencias con el mundo.</p>
-
-    <section>
-        <h2>Últimas Publicaciones</h2>
-        <p>Aquí encontrarás mis artículos más recientes.</p>
-
-        <a href="{% url 'posts:post_list' %}">Publicaciones</a>
+    <section class="home-hero" aria-labelledby="home-title">
+        <h1 id="home-title">Ideas e historias.<br><span>Para compartir.</span></h1>
+        <p class="lead">Bienvenidos a mi blog personal. Aquí comparto mis pensamientos y experiencias con el mundo.</p>
+        <div class="actions"><a class="button" href="{% url 'posts:post_list' %}">Explorar publicaciones <span aria-hidden="true">→</span></a><a class="text-link" href="{% url 'pages:about' %}">Conocer el blog</a></div>
+    </section>
+    <section class="home-reading" aria-labelledby="reading-title">
+        <div><h2 id="reading-title">Algo nuevo por descubrir.</h2><p>Aquí encontrarás mis artículos más recientes. Tómate un momento para leer, aprender y encontrar otra perspectiva.</p></div>
+        <a class="text-link" href="{% url 'posts:post_list' %}">Ver todas las publicaciones <span aria-hidden="true">→</span></a>
     </section>
 {% endblock %}

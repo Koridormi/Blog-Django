@@ -1,19 +1,19 @@
 {% extends '../base.html' %}
 
-{% block title %}Eliminar Publicación | Mi Blog Personal{% endblock %}
+{% block title %}Eliminar publicación | Mi Blog Personal{% endblock %}
+{% block description %}Confirmación de eliminación de una publicación de Mi Blog.{% endblock %}
+{% block robots %}noindex, follow{% endblock %}
 
 {% block content %}
-    <h1>Eliminar</h1>
-
-    <section>
-        <p>¿Estás seguro de que deseas eliminar esta publicación?</p>
-        <p>Esta accion no se puede deshacer.</p>
-    </section>
-    <section>
-        <form method="post" novalidate>
+    <section class="confirm-page" aria-labelledby="delete-title">
+        <h1 id="delete-title">Eliminar publicación</h1>
+        <p class="lead">¿Estás seguro de que deseas eliminar esta publicación?</p>
+        <p class="delete-post-title">{{ post.title }}</p>
+        <p>Esta acción no se puede deshacer.</p>
+        <form method="post" class="actions">
             {% csrf_token %}
-            <button type="submit">Confirmar Eliminación</button>
+            <button class="button button-danger" type="submit">Confirmar eliminación</button>
+            <a class="button button-secondary" href="{% url 'posts:post_detail' pk=post.pk %}">Cancelar</a>
         </form>
-        <a href="{% url 'posts:post_detail' pk=post.pk %}">Cancelar</a>
     </section>
 {% endblock %}

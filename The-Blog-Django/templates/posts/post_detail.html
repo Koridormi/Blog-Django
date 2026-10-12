@@ -1,20 +1,39 @@
 {% extends '../base.html' %}
 
 {% block title %}{{ post.title }} | Mi Blog Personal{% endblock %}
+{% block description %}{{ post.description|striptags|truncatechars:155 }}{% endblock %}
+{% block social_meta %}
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Mi Blog">
+    <meta property="og:title" content="{{ post.title }}">
+    <meta property="og:description" content="{{ post.description|striptags|truncatechars:155 }}">
+    {% if request %}
+        <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+        {% if post.image %}
+            <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.image.url }}">
+            <meta property="og:image:alt" content="Imagen de la publicación: {{ post.title }}">
+            <meta property="og:image:width" content="{{ post.image.width }}">
+            <meta property="og:image:height" content="{{ post.image.height }}">
+        {% endif %}
+    {% endif %}
+{% endblock %}
 
 {% block content %}
-    <article>
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.description }}</p>
-        <p>Author: {{ post.author.username }}</p>
-    </article>
-
-    <section>
-        {% if user.is_authenticated and user.pk == post.author_id %}
-            <a href="{% url 'posts:post_update' pk=post.pk %}">Editar Publicación</a>
-            <a href="{% url 'posts:post_delete' pk=post.pk %}">Eliminar Publicación</a>
+    <article class="reading-page">
+        <a class="text-link back-link" href="{% url 'posts:post_list' %}"><span aria-hidden="true">←</span> Todas las publicaciones</a>
+        <header class="article-heading"><h1>{{ post.title }}</h1><p class="post-author">Por {{ post.author.username }}</p></header>
+        {% if post.image %}
+            <figure class="article-image">
+                <img src="{{ post.image.url }}" alt="Imagen de la publicación: {{ post.title }}" width="{{ post.image.width }}" height="{{ post.image.height }}" decoding="async" fetchpriority="high">
+            </figure>
         {% endif %}
-    
-        <a href="{% url 'posts:post_list' %}">Volver a Publicaciones</a>
-    </section>
+        <div class="prose article-body">{{ post.description|linebreaks }}</div>
+        <div class="article-actions">
+            {% if user.is_authenticated and user.pk == post.author_id %}
+                <a class="button button-secondary" href="{% url 'posts:post_update' pk=post.pk %}">Editar publicación</a>
+                <a class="text-link danger-link" href="{% url 'posts:post_delete' pk=post.pk %}">Eliminar publicación</a>
+            {% endif %}
+            <a class="text-link" href="{% url 'posts:post_list' %}">Volver a publicaciones</a>
+        </div>
+    </article>
 {% endblock %}

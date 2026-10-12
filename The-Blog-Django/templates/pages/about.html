@@ -1,17 +1,12 @@
 {% extends '../base.html' %}
 
-{% block title %}Acerca de | Mi Blog Personal {% endblock %}
+{% block title %}Acerca de | Mi Blog Personal{% endblock %}
+{% block description %}Conoce Mi Blog, un proyecto personal creado con Django para compartir pensamientos, experiencias y aprender sobre el desarrollo web.{% endblock %}
 
 {% block content %}
-    <h1>Acerca de Mi Blog</h1>
-
-    <section>
-        <p>Este blog personal está creado con Django y tiene como objetivo mostrar el flujo basico de Django.</p>
-        <p>Espero que encuentres útil y educativo el contenido compartido en este blog.</p>
-    </section>
-
-    <div>
-        <a href="{% url 'pages:home' %}">Volver al Inicio</a>
-    </div>
-
+    <article class="reading-page">
+        <header class="page-heading"><h1>Acerca de Mi Blog</h1><p class="lead">Un espacio personal para compartir, explorar y seguir aprendiendo.</p></header>
+        <div class="prose"><p>Este blog personal está creado con Django y tiene como objetivo mostrar el flujo básico de Django.</p><p>Espero que encuentres útil y educativo el contenido compartido en este blog.</p></div>
+        <div class="actions"><a class="button" href="{% url 'posts:post_list' %}">Explorar publicaciones</a><a class="text-link" href="{% url 'pages:home' %}">Volver al inicio</a></div>
+    </article>
 {% endblock %}

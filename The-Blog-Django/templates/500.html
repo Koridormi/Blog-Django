@@ -1,9 +1,14 @@
 {% extends './base.html' %}
 
-{% block title %}500 Internal Server Error | Mi Blog Personal{% endblock %}
+{% block title %}500 · Algo salió mal. | Mi Blog Personal{% endblock %}
+{% block description %}No pudimos cargar esta página. Inténtalo de nuevo en unos momentos o vuelve al inicio.{% endblock %}
+{% block robots %}noindex, follow{% endblock %}
 
 {% block content %}
-    <h1>500 Internal Server Error</h1>
-    <p>No hay resultados disponibles</p>
-    <a href="{% url 'posts:post_list' %}">Volver a Publicaciones</a>
+    <section class="error-page" aria-labelledby="error-title">
+        <p class="error-code" aria-label="Error 500">500</p>
+        <h1 id="error-title">Algo salió mal.</h1>
+        <p class="lead">No pudimos cargar esta página. Inténtalo de nuevo en unos momentos o vuelve al inicio.</p>
+        <div class="actions"><a class="button" href="{% url 'pages:home' %}">Volver al inicio</a><a class="text-link" href="{% url 'posts:post_list' %}">Ver publicaciones</a></div>
+    </section>
 {% endblock %}

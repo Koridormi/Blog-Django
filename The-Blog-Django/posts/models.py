@@ -9,6 +9,10 @@ class Post(models.Model):
         on_delete = models.PROTECT,
         related_name = 'posts'
     )
+    image = models.ImageField(
+        upload_to = 'posts/',
+        blank = True
+    )
 
     def __str__(self):
         return self.title
