@@ -1,0 +1,19 @@
+{% extends '../base.html' %}
+
+{% block title %}Eliminar Publicación | Mi Blog Personal{% endblock %}
+
+{% block content %}
+    <h1>Eliminar</h1>
+
+    <section>
+        <p>¿Estás seguro de que deseas eliminar esta publicación?</p>
+        <p>Esta accion no se puede deshacer.</p>
+    </section>
+    <section>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <button type="submit">Confirmar Eliminación</button>
+        </form>
+        <a href="{% url 'posts:post_detail' pk=post.pk %}">Cancelar</a>
+    </section>
+{% endblock %}

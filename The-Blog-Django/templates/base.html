@@ -16,7 +16,7 @@
             </a>
             <ul>
                 <li><a href="{% url 'pages:home' %}">Inicio</a></li>
-                <li><a href="#">Acerca de</a></li>
+                <li><a href="{% url 'pages:about' %}">Acerca de</a></li>
                 <li><a href="{% url 'posts:post_list' %}">Publicaciones</a></li>
                 
                 {% if user.is_authenticated %}
@@ -29,6 +29,7 @@
                     </li>
                 {% else %}
                     <li><a href="{% url 'accounts:login' %}">Iniciar Sesión</a></li>
+                    <li><a href="{% url 'accounts:sign_up' %}">Crear Cuenta</a></li>
                 {% endif %}
             </ul>
         </nav>

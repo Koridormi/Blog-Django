@@ -14,5 +14,8 @@
         <button type="submit">Iniciar Sesión</button>
     </form>
 
-    <a href="{% url 'pages:home' %}">Volver al Inicio</a>
+    <div>
+        <a href="{% url 'pages:home' %}">Volver al Inicio</a>
+        <a href="{% url 'accounts:sign_up' %}">Crear Cuenta</a>
+    </div>
 {% endblock %}

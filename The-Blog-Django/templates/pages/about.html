@@ -1,0 +1,17 @@
+{% extends '../base.html' %}
+
+{% block title %}Acerca de | Mi Blog Personal {% endblock %}
+
+{% block content %}
+    <h1>Acerca de Mi Blog</h1>
+
+    <section>
+        <p>Este blog personal está creado con Django y tiene como objetivo mostrar el flujo basico de Django.</p>
+        <p>Espero que encuentres útil y educativo el contenido compartido en este blog.</p>
+    </section>
+
+    <div>
+        <a href="{% url 'pages:home' %}">Volver al Inicio</a>
+    </div>
+
+{% endblock %}

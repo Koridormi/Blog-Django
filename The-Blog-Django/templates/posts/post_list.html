@@ -5,20 +5,22 @@
 {% block content %}
     <h1>Publicaciones</h1>
 
+    {% if user.is_authenticated %}
+        <div>
+            <a href="{% url 'pages:home' %}">Volver al Inicio</a>
+            <a href="{% url 'posts:post_create' %}">Crear Publicación</a>
+        </div>
+    {% endif %}
+
     <div class="main-contenido">
     {% for post in posts %}
         <article>
             <h2><a href="{% url 'posts:post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-            <p>{{ post.description }}</p>
+            <p>{{ post.description | truncatechars:150 }}</p>
             <p>Author: {{ post.author.username }}</p>
         </article>
     {% empty %}
         <p>No hay publicaciones disponibles.</p>
     {% endfor %}
     </div>
-    {% if user.is_authenticated %}
-    <div>
-        <a href="{% url 'posts:post_create' %}">Crear Publicación</a>
-    </div>
-    {% endif %}
 {% endblock %}

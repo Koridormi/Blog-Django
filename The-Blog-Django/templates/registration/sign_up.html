@@ -1,0 +1,16 @@
+{% extends '../base.html' %}
+
+{% block title %}Registro | Mi Blog Personal{% endblock %}
+
+{% block content %}
+    <h1>Crear Cuenta</h1>
+
+    <form method="post" action="{% url 'accounts:sign_up' %}" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Crear Cuenta</button>
+    </form>
+
+    <a href="{% url 'accounts:login' %}">¿Ya tienes una cuenta? Inicia sesión</a>
+{% endblock %}

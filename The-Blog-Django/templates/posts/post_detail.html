@@ -9,5 +9,12 @@
         <p>Author: {{ post.author.username }}</p>
     </article>
 
-    <a href="{% url 'posts:post_list' %}">Volver a Publicaciones</a>
+    <section>
+        {% if user.is_authenticated and user.pk == post.author_id %}
+            <a href="{% url 'posts:post_update' pk=post.pk %}">Editar Publicación</a>
+            <a href="{% url 'posts:post_delete' pk=post.pk %}">Eliminar Publicación</a>
+        {% endif %}
+    
+        <a href="{% url 'posts:post_list' %}">Volver a Publicaciones</a>
+    </section>
 {% endblock %}

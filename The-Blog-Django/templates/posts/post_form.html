@@ -1,15 +1,15 @@
 {% extends '../base.html' %}
 
-{% block title %}Crear Publicación | Mi Blog Personal{% endblock %}
+{% block title %}{{ form_title }} | Mi Blog Personal{% endblock %}
 
 {% block content %}
-    <h1>Crear Publicación</h1>
+    <h1>{{ form_title }}</h1>
 
-    <form method="post" action="{% url 'posts:post_create' %}" novalidate>
+    <form method="post" novalidate>
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button type="submit">Crear Publicación</button>
+        <button type="submit">{{ form_title }}</button>
     </form>
 
     <a href="{% url 'posts:post_list' %}">Volver al listado de publicaciones</a>
